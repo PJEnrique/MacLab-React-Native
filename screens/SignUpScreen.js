@@ -4,7 +4,7 @@ import { themeColors } from '../theme'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../config/firebase';
+import { auth, signInWithGoogle, signInWithFacebook } from '../config/firebase';
 
 // subscribe for more videos like this :)
 export default function SignUpScreen() {
@@ -69,7 +69,7 @@ export default function SignUpScreen() {
             Or
         </Text>
         <View className="flex-row justify-center space-x-12">
-            <TouchableOpacity className="p-2 bg-gray-100 rounded-2xl">
+            <TouchableOpacity onPress={signInWithGoogle} className="p-2 bg-gray-100 rounded-2xl">
                 <Image source={require('../assets/icons/google.png')} 
                     className="w-10 h-10" />
             </TouchableOpacity>
@@ -77,7 +77,8 @@ export default function SignUpScreen() {
                 <Image source={require('../assets/icons/apple.png')} 
                     className="w-10 h-10" />
             </TouchableOpacity>
-            <TouchableOpacity className="p-2 bg-gray-100 rounded-2xl">
+            <TouchableOpacity className="p-2 bg-gray-100 rounded-2xl"
+            onPress={signInWithFacebook}>
                 <Image source={require('../assets/icons/facebook.png')} 
                     className="w-10 h-10" />
             </TouchableOpacity>

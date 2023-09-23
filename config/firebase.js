@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import {getAuth} from 'firebase/auth'
+import {getAuth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from 'firebase/auth'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -16,5 +16,48 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
 
-export const auth = getAuth(app);
+const signInWithGoogle = async () => {
+  try {
+    await signInWithPopup(auth, googleProvider).then((data) => {
+      const name = data.user.displayName;
+      const email = data.user.email;
+      const profilePic = data.user.photoURL;
+
+      localStorage.setItem("name", name);
+      localStorage.setItem("email", email);
+      localStorage.setItem("profilePic", profilePic);
+
+      window.location.href = "/screens/SignUpScreen.js";
+    }).catch((error) => {
+      console.log(error)
+    })
+ } catch (error) {
+  console.log(error);
+ }
+}
+
+const signInWithFacebook = async () => {
+  try {
+    await signInWithPopup(auth, facebookProvider)
+    .then((result) => {
+      const user = result.user;
+  
+      const credential = FacebookAuthProvider.credentialFromResult(result);
+
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.customData.email;
+      const credential = FacebookAuthProvider.credentialFromError(error);
+  
+    });
+ } catch (error) {
+  console.log(error);
+ }
+}
+export {auth, signInWithGoogle, signInWithFacebook};
