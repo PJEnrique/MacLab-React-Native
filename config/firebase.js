@@ -6,12 +6,12 @@ import {getAuth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } fro
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBe3bxw8xL3dPmtFzHrebFUO-boB27VqnE",
-  authDomain: "maclab-auth.firebaseapp.com",
-  projectId: "maclab-auth",
-  storageBucket: "maclab-auth.appspot.com",
-  messagingSenderId: "821612567140",
-  appId: "1:821612567140:web:fcf6f3ae187324a0859d71"
+  apiKey: "AIzaSyAfvDZhNA4QYX19O63sxreQx5h5E5PrawY",
+  authDomain: "maclab-auth-399711.firebaseapp.com",
+  projectId: "maclab-auth-399711",
+  storageBucket: "maclab-auth-399711.appspot.com",
+  messagingSenderId: "1466418591",
+  appId: "1:1466418591:web:d5e89df076c9850fa3e9aa"
 };
 
 // Initialize Firebase
